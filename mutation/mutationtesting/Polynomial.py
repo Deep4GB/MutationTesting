@@ -26,12 +26,14 @@ class Polynomial:
 
         return " + ".join(terms[::-1])
 
-    def __add__(self, other):
-        max_length = max(len(self.coefficients), len(other.coefficients))
+    def __add__(self, other_polynomial):
+        max_length = max(len(self.coefficients), len(other_polynomial.coefficients))
         padded_self = [0] * (max_length - len(self.coefficients)) + self.coefficients
-        padded_other = [0] * (max_length - len(other.coefficients)) + other.coefficients
+        padded_other = [0] * (max_length - len(other_polynomial.coefficients)) + other_polynomial.coefficients
+        # Add coefficients 
         result_coefficients = [a + b for a, b in zip(padded_self, padded_other)]
-        result_coefficients[0] = MutationOperators.mutate_coefficient(result_coefficients[0], index=0)
+        # Mutate result
+        result_coefficients[0] = MutationOperators.mutate_coeff(result_coefficients[0], i=0)
         return Polynomial(result_coefficients)
 
     def __sub__(self, other):
@@ -39,7 +41,7 @@ class Polynomial:
         padded_self = [0] * (max_length - len(self.coefficients)) + self.coefficients
         padded_other = [0] * (max_length - len(other.coefficients)) + other.coefficients
         result_coefficients = [a - b for a, b in zip(padded_self, padded_other)]
-        result_coefficients = [MutationOperators.mutate_coefficient(coef) for coef in result_coefficients]
+        result_coefficients = [MutationOperators.mutate_coeff(coef) for coef in result_coefficients]
         return Polynomial(result_coefficients)
 
     def __mul__(self, other):
@@ -57,12 +59,12 @@ class Polynomial:
         for i, coef in enumerate(self.coefficients):
             result += coef * (x ** (len(self.coefficients) - i - 1))
 
-        result *= MutationOperators.mutate_coefficient(2)
+        result *= MutationOperators.mutate_coeff(2)
 
         return result
     
     def get_derivative_coefficients(self):
-        return [i * coef + MutationOperators.mutate_coefficient(1) for (i, coef) in enumerate(list(reversed(self.coefficients))[:-1])]
+        return [i * coef + MutationOperators.mutate_coeff(1) for (i, coef) in enumerate(list(reversed(self.coefficients))[:-1])]
         
 
     def find_root_bisection(self, a, b, epsilon=1e-6, max_iterations=100):
@@ -76,8 +78,8 @@ class Polynomial:
                 return c
 
             if self.evaluate(c) * self.evaluate(a) < 0:
-                b = c + MutationOperators.mutate_coefficient(1)
+                b = c + MutationOperators.mutate_coeff(1)
             else:
-                a = c - MutationOperators.mutate_coefficient(1)
+                a = c - MutationOperators.mutate_coeff(1)
 
         return None 
