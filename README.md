@@ -3,14 +3,12 @@
 ## Introduction
 The Polynomial class serves as a fundamental component for manipulating polynomials, allowing various arithmetic operations and evaluations. This report presents an in-depth analysis of mutation testing performed on the Polynomial class and its associated test suite. Mutation testing is a critical technique used to evaluate the quality and effectiveness of the test suite by introducing controlled modifications (mutations) to the source code and assessing how well the test suite can detect these changes.
 
-# 
 
 ## Command to run:
 ``` bash
 mut.py --target Polynomial --unit-test PolyTest --runner pytest
 ```
 
-#
 
 ## Defined Mutation Operators
 1. **Modify Coefficients**: Adjust coefficients by random values within a specific range.
@@ -18,7 +16,6 @@ mut.py --target Polynomial --unit-test PolyTest --runner pytest
 3. **Introduce Redundancy in Multiplication**: Add redundant calculations within the multiplication process.
 4. **Modify Exponent in Evaluation**: Change the exponent calculation in the evaluation method.
 
-# 
 
 ## Applied Mutations and Impact
 The provided `mutation_operators.py` script applies these mutations to the `Polynomial` class. The mutations aim to alter polynomial operations to produce different outcomes or errors.
@@ -29,7 +26,6 @@ The provided `mutation_operators.py` script applies these mutations to the `Poly
 - **Mutation 3 (Introduce Redundancy in Multiplication)**: Introduces redundant arithmetic within the multiplication operation.
 - **Mutation 4 (Modify Exponent in Evaluation)**: Adjusts the exponent calculation in polynomial evaluation.
 
-# 
 
 ## Summary of Mutant Survival and Killing
 The mutation testing revealed the following results after executing the test suite against various mutations:
@@ -133,12 +129,12 @@ Mutation score [11.28410 s]: 79.3%
    - timeout: 0 (0.0%)
 ```
 
-# 
+
 
 ## Analysis of Test Suite's Effectiveness
 While the test suite killed a significant number of mutants, some survived or were deemed incompetent. This indicates potential weaknesses in test coverage or mutation operator robustness.
 
-# 
+
 
 ## Recommendations for Test Suite Improvement
 1. Enhance test coverage for specific edge cases or exceptional scenarios.
@@ -146,7 +142,7 @@ While the test suite killed a significant number of mutants, some survived or we
 3. Include tests specifically targeting mutated behaviors identified in survived mutants.
 4. Increase the variety and complexity of test scenarios.
 
-# 
+
 
 ## Conclusion
 The mutation testing conducted on the Polynomial class and its associated test suite revealed valuable insights into the effectiveness of the testing approach. While the test suite demonstrated its capability to detect and eliminate a substantial portion of the generated mutants, the survival of certain mutants and the identification of incompetent ones suggest potential areas for enhancing test coverage. The results emphasize the importance of refining the test suite by addressing the identified gaps, augmenting test scenarios, and improving mutation operators. This iterative process is pivotal in fortifying code quality, ensuring the reliability of polynomial-related operations, and enhancing the overall robustness of the Polynomial class implementation.
